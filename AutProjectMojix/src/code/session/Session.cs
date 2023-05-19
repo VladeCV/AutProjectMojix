@@ -22,11 +22,7 @@ namespace AutProjectMojix.src.code.session
             {
                 instance = new Session();
             }
-            else
-            {
-                instance = null;
-                browser.Quit();
-            }
+            return instance;
         }
         public void CloseBrowser()
         {

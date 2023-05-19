@@ -24,9 +24,6 @@ namespace AutProjectMojix.src.code.factoryBrowser
                     browser = new Edge();
                     break;
 
-                case "grid":
-                    browser = new Grid();
-                    break;
                 default:
                     browser = new Chrome();
                     break;

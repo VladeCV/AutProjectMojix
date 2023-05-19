@@ -42,6 +42,5 @@ namespace AutProjectMojix.src.code.control
                 return false;
             }
         }
-
     }
 }
