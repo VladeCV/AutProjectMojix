@@ -25,15 +25,17 @@ namespace AutProjectMojix.src.code.test
             loginPage.pwdTxtBox.SetText("759153ferd123");
             loginPage.loginBtn.Click();
 
+            Assert.IsTrue(leftMenu.todayLabel.IsControlDisplayed(), "Login was not successful");
+
             //CREATE PROJECT
             Thread.Sleep(1000);
             leftMenu.addProjectBtn.Click();
-            leftMenu.projectName.SetText("new");
+            leftMenu.projectName.SetText("New project blue");
             leftMenu.dropDownColorBtn.Click();
             leftMenu.projectColorBlue.Click();
             leftMenu.confirmAddition.Click();
 
-
+            Assert.IsTrue(leftMenu.ProjectNameIsDisplayed("New project blue"), "ERROR!The project was not created");
 
         }
     }
