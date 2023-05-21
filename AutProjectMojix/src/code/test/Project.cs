@@ -28,14 +28,33 @@ namespace AutProjectMojix.src.code.test
             Assert.IsTrue(leftMenu.todayLabel.IsControlDisplayed(), "Login was not successful");
 
             //CREATE PROJECT
-            Thread.Sleep(1000);
             leftMenu.addProjectBtn.Click();
             leftMenu.projectName.SetText("New project blue");
             leftMenu.dropDownColorBtn.Click();
             leftMenu.projectColorBlue.Click();
             leftMenu.confirmAddition.Click();
+            Thread.Sleep(1000);
+            
+            Assert.IsTrue(leftMenu.ProjectNameIsDisplayed("New project blue"), "ERROR! The project was not created");
+            //EDIT PROJECT
+            leftMenu.ClickProjectName("New project blue");
+            leftMenu.editProjectBtn.Click();
 
-            Assert.IsTrue(leftMenu.ProjectNameIsDisplayed("New project blue"), "ERROR!The project was not created");
+
+            Thread.Sleep(1000);
+            leftMenu.projectName.SetText("New project red updated");
+            leftMenu.dropDownColorBtn.Click();
+            leftMenu.projectColorRed.Click();
+            leftMenu.confirmProjectUpdate.Click();
+
+            Assert.IsTrue(leftMenu.ProjectNameIsDisplayed("New project red updated"), "ERROR! The project was not updated");
+
+            //DELETE PROJECT
+            leftMenu.ClickProjectName("New project red updated");
+            leftMenu.deleteProjectBtn.Click();
+            leftMenu.deleteConfirmationBtn.Click();
+
+            Assert.IsFalse(leftMenu.ProjectNameIsDisplayed("New project red updated"), "ERROR! The project was not deleted");
 
         }
     }

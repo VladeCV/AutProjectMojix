@@ -23,16 +23,25 @@ namespace AutProjectMojix.src.code.page.Todoist
         public Button actionsBtn = new Button(By.XPath("//*[@id=\"projects_list\"]//li//span[text()='dasd']//following::button[@aria-label='More project actions']"));
         public Button editProjectBtn = new Button(By.XPath("//div[@class=' popper']//ul//li[4]"));
         public Button projectColorBlue = new Button(By.XPath("//ul//li//span[text()='Blue']"));
-        public Button confirmProjectUpdate = new Button(By.XPath("//footer//span[text()='Save']"));
+        public Button confirmProjectUpdate = new Button(By.XPath("//footer//button[2]"));
 
         //Delete Project
         public Button deleteProjectBtn = new Button(By.XPath("//div[@class=' popper']//ul//li[13]"));
-        public Button deleteConfirmationBtn = new Button(By.XPath("//footer//span[text()='Delete']\r\n"));
+        public Button deleteConfirmationBtn = new Button(By.XPath("//footer//button[2]"));
+
+        public Label moreActionsButton = new Label(By.XPath("//a[@aria-label='asd, 0 tasks']//following-sibling::div//button"));
 
         public Boolean ProjectNameIsDisplayed(String projectName)
         {
             Label labelProjectName = new Label(By.XPath("//ul[@id=\"projects_list\"]//li[last()]//span[text()='"+projectName+"']"));
             return labelProjectName.IsControlDisplayed();
-        } 
+        }
+        public void ClickProjectName(String projectName)
+        {
+            //Label lastProject = new Label(By.XPath("//ul[@id='projects_list']//li//span[text()='"+projectName+"']//following::button[@aria-label='More project actions']"));
+            //lastProject.Click();
+            Label moreActionsButton = new Label(By.XPath("//a[@aria-label='"+projectName+", 0 tasks']//following-sibling::div//button"));
+            moreActionsButton.Click();
+        }
     }
 }
