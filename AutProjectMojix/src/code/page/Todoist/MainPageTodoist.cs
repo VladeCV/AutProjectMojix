@@ -10,6 +10,6 @@ namespace AutProjectMojix.src.code.page
 {
     public class MainPageTodoist
     {
-        public Button loginButton = new Button(By.XPath("//nav//a[text()=\"Log in\"]\r\n"));
+        public Button loginButton = new Button(By.XPath("//nav//a[text()='Log in']"));
     }
 }

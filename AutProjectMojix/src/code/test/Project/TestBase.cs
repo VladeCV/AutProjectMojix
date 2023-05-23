@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutProjectMojix.src.code.test
+namespace AutProjectMojix.src.code.test.Project
 {
     [TestClass]
     public class TestBase

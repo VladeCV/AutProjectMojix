@@ -1,23 +1,22 @@
 ﻿using AutProjectMojix.src.code.page;
 using AutProjectMojix.src.code.page.Todoist;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AutProjectMojix.src.code.test
+namespace AutProjectMojix.src.code.test.Project
 {
     [TestClass]
+
     public class Project : TestBase
     {
+       
+
         MainPageTodoist mainPage = new MainPageTodoist();
         LoginPage loginPage = new LoginPage();
         LeftMenu leftMenu = new LeftMenu();
 
         [TestMethod]
-
-        public void TodoistTest() {
+        
+        public void ProjectCRUD() {
 
             //LOGIN
             mainPage.loginButton.Click();
@@ -26,6 +25,7 @@ namespace AutProjectMojix.src.code.test
             loginPage.loginBtn.Click();
 
             Assert.IsTrue(leftMenu.todayLabel.IsControlDisplayed(), "Login was not successful");
+        
 
             //CREATE PROJECT
             leftMenu.addProjectBtn.Click();
@@ -34,9 +34,11 @@ namespace AutProjectMojix.src.code.test
             leftMenu.projectColorBlue.Click();
             leftMenu.confirmAddition.Click();
             Thread.Sleep(1000);
-            
+
             Assert.IsTrue(leftMenu.ProjectNameIsDisplayed("New project blue"), "ERROR! The project was not created");
+        
             //EDIT PROJECT
+
             leftMenu.ClickProjectName("New project blue");
             leftMenu.editProjectBtn.Click();
 
@@ -46,7 +48,6 @@ namespace AutProjectMojix.src.code.test
             leftMenu.dropDownColorBtn.Click();
             leftMenu.projectColorRed.Click();
             leftMenu.confirmProjectUpdate.Click();
-
             Assert.IsTrue(leftMenu.ProjectNameIsDisplayed("New project red updated"), "ERROR! The project was not updated");
 
             //DELETE PROJECT

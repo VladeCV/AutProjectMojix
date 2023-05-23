@@ -1,11 +1,5 @@
 ﻿using AutProjectMojix.src.code.session;
 using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V111.Debugger;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutProjectMojix.src.code.control
 {

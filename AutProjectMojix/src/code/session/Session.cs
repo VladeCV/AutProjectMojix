@@ -35,5 +35,15 @@ namespace AutProjectMojix.src.code.session
             return browser;
         }
 
+        public void ChangeFrame(String idFrame)
+        {
+            browser.SwitchTo().Frame(idFrame);
+        }
+
+        public void BackToPrincipal()
+        {
+            browser.SwitchTo().DefaultContent();
+        }
+
     }
 }
