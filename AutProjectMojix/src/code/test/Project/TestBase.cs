@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AutProjectMojix.src.code.test.Project
+﻿namespace AutProjectMojix.src.code.test.Project
 {
     [TestClass]
     public class TestBase

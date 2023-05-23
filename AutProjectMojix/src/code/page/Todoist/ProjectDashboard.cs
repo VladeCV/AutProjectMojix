@@ -1,15 +1,9 @@
 ﻿using AutProjectMojix.src.code.control;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutProjectMojix.src.code.page.Todoist
 {
-    public class LeftMenu
+    public class ProjectDashboard
     {
         //Create Project 
         public Label todayLabel = new Label(By.XPath("//div[@id='agenda_view']//header//span[text()='Today']"));
@@ -28,10 +22,9 @@ namespace AutProjectMojix.src.code.page.Todoist
         //Delete Project
         public Button deleteProjectBtn = new Button(By.XPath("//div[@class=' popper']//ul//li[13]"));
         public Button deleteConfirmationBtn = new Button(By.XPath("//footer//button[2]"));
-
         public Label moreActionsButton = new Label(By.XPath("//a[@aria-label='asd, 0 tasks']//following-sibling::div//button"));
 
-        public Boolean ProjectNameIsDisplayed(String projectName)
+        public bool ProjectNameIsDisplayed(String projectName)
         {
             Label labelProjectName = new Label(By.XPath("//ul[@id='projects_list']//li[last()]//span[text()='"+projectName+"']"));
             return labelProjectName.IsControlDisplayed();

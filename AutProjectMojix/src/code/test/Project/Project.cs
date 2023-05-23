@@ -1,6 +1,5 @@
 ﻿using AutProjectMojix.src.code.page;
 using AutProjectMojix.src.code.page.Todoist;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AutProjectMojix.src.code.test.Project
 {
@@ -8,25 +7,21 @@ namespace AutProjectMojix.src.code.test.Project
 
     public class Project : TestBase
     {
-       
-
-        MainPageTodoist mainPage = new MainPageTodoist();
+        MainPage mainPage = new MainPage();
         LoginPage loginPage = new LoginPage();
-        LeftMenu leftMenu = new LeftMenu();
+        ProjectDashboard leftMenu = new ProjectDashboard();
 
         [TestMethod]
         
-        public void ProjectCRUD() {
+        public void Project_Managament() {
 
             //LOGIN
             mainPage.loginButton.Click();
             loginPage.emailTxtBox.SetText("vladimircvcf98@outlook.com");
             loginPage.pwdTxtBox.SetText("759153ferd123");
             loginPage.loginBtn.Click();
-
             Assert.IsTrue(leftMenu.todayLabel.IsControlDisplayed(), "Login was not successful");
         
-
             //CREATE PROJECT
             leftMenu.addProjectBtn.Click();
             leftMenu.projectName.SetText("New project blue");
@@ -34,15 +29,11 @@ namespace AutProjectMojix.src.code.test.Project
             leftMenu.projectColorBlue.Click();
             leftMenu.confirmAddition.Click();
             Thread.Sleep(1000);
-
             Assert.IsTrue(leftMenu.ProjectNameIsDisplayed("New project blue"), "ERROR! The project was not created");
         
-            //EDIT PROJECT
-
+            //UPDATE PROJECT
             leftMenu.ClickProjectName("New project blue");
             leftMenu.editProjectBtn.Click();
-
-
             Thread.Sleep(1000);
             leftMenu.projectName.SetText("New project red updated");
             leftMenu.dropDownColorBtn.Click();
@@ -54,7 +45,6 @@ namespace AutProjectMojix.src.code.test.Project
             leftMenu.ClickProjectName("New project red updated");
             leftMenu.deleteProjectBtn.Click();
             leftMenu.deleteConfirmationBtn.Click();
-
             Assert.IsFalse(leftMenu.ProjectNameIsDisplayed("New project red updated"), "ERROR! The project was not deleted");
 
         }
