@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AutProjectMojix.src.code.test.Email
+﻿namespace AutProjectMojix.src.code.test.Email
 {
     [TestClass]
-    public class TestBase2
+    public class TestBase
     {
         [TestInitialize]
         public void OpenBrowser()

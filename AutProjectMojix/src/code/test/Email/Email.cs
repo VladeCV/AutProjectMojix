@@ -1,43 +1,47 @@
 ﻿using AutProjectMojix.src.code.page.Yopmail;
 using AutProjectMojix.src.code.session;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AutProjectMojix.src.code.test.Email
 {
     [TestClass]
-    public class Email : TestBase2
+    public class Email : TestBase
     {
         MainPage mainPage = new MainPage();
         Inbox inboxPage = new Inbox();
+        EmailBody emailBody = new EmailBody();
 
         [TestMethod]
 
         public void enterEmail()
         {
+            //GENERATE A RANDOM PHRASE FOR MESSAGE BODY
+            string[] adjectives = { "beautiful", "mysterious", "energetic", "brilliant", "vibrant", "sad", "marvelous" };
+            string[] nouns = { "sunrise", "adventure", "dream", "journey", "harmony", "moonlight", "sunset" };
+
+            Random random = new Random();
+            string randomPhrase = $"{adjectives[random.Next(adjectives.Length)]} {nouns[random.Next(nouns.Length)]}";
+
+            //LOGIN TO EMAIL
             mainPage.emailInput.SetText("paemaslls");
             mainPage.checkInboxBtn.Click();
-
             Assert.IsTrue(inboxPage.emailIsDisplayed("paemaslls@yopmail.com"), "Login was not successful");
 
+            //CREATE EMAIL AND SEND IT
             inboxPage.newMessageBtn.Click();
             Session.Instance().ChangeFrame("ifmail"); 
-
-            inboxPage.recipientInput.SetText("paemaslls");
-            inboxPage.subjectInput.SetText("test");
-            inboxPage.messageBody.SetText("sometihgnaasd");
-            inboxPage.sendMessageBtn.Click();
-
-            
-
+            emailBody.recipientInput.SetText("paemaslls@yopmail.com");
+            emailBody.subjectInput.SetText(randomPhrase);
+            emailBody.messageBody.SetText("Body message for email testing");
+            emailBody.sendMessageBtn.Click();
+            Assert.IsTrue(emailBody.messageSentAlert.IsControlDisplayed(),"Email was not sent!!!");
             Session.Instance().BackToPrincipal();
-
-            Assert.IsTrue(inboxPage.messageSentAlert.IsControlDisplayed());
-
+            
+            //CHECK INBOX
+            inboxPage.refresInboxBtn.Click();
+            Session.Instance().ChangeFrame("ifinbox");
+            Assert.IsTrue(inboxPage.isEmailSubjectDisplayed(randomPhrase), "Email not found");
+            Session.Instance().BackToPrincipal();
             inboxPage.refresInboxBtn.Click();
         }
 
